@@ -1,0 +1,46 @@
+.shopping-page .container {
+    padding-bottom: 20px;
+}
+
+.shopping-page .sorting {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 60px;
+}
+
+.shopping-page .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    width: 88px;
+    height: 33px;
+    margin-left: 16px;
+    cursor: pointer;
+    font-family: Almarai;
+    font-size: 14px;
+}
+
+.shopping-page .text {
+    color: rgba(0, 0, 0, 0.33);
+    text-align: center;
+    font-family: "Readex Pro";
+    font-size: 12px;
+}
+
+.paint-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 341px);
+    grid-gap: 25px;
+    margin-top: 57px;
+    direction: rtl;
+}
+
+@media (max-width: 992px) {
+    .paint-cards {
+        justify-content: center;
+    }
+}

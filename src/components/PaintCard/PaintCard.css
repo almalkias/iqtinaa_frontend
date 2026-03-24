@@ -1,0 +1,158 @@
+.paint-card-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 288px);
+    justify-self: center;
+    box-sizing: border-box;
+    padding: 28px 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.paint-card-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.paint-image-container {
+    position: relative;
+}
+
+.paint-card-container .heart-icon {
+    font-size: 24px;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    cursor: pointer;
+}
+
+.paint-card-container .solid-heart {
+    color: red;
+    cursor: pointer;
+}
+
+.paint-card-container #paint-photo {
+    width: 244px;
+    height: 244px;
+    object-fit: cover;
+}
+
+.paint-card-container .paint-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    color: #272727;
+    text-align: right;
+    font-family: Cairo;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.28px;
+}
+
+.paint-card-container .paint-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.paint-card-container .paint-info p {
+    font-size: 15px;
+    font-weight: 600;
+    max-width: 142px;
+}
+
+.paint-card-container .paint-info .price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4A55A2;
+}
+
+.paint-card-container .paint-meta {
+    margin-top: 6px;
+    color: #666;
+    text-align: right;
+    font-family: Cairo;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.paint-card-container .paint-description {
+    color: #272727;
+    font-family: Cairo;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.28px;
+}
+
+.paint-card-container .paint-description .toggle-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 24px;
+    color: var(--Color, #4A55A2);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.paint-card-container .paint-description p {
+    font-size: 11px;
+    line-height: 169.1%;
+    letter-spacing: 1.6px;
+}
+
+.paint-card-container .paint-description .description {
+    margin-top: 12px;
+}
+
+.paint-card-container .paint-description .size,
+.paint-card-container .paint-description .date,
+.paint-card-container .paint-description .description {
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.paint-card-container .btns {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 16px 0 0;
+}
+
+.paint-card-container .btns button {
+    width: 118px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px #6184ab;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Almarai;
+    font-weight: 700;
+    line-height: 184.6%;
+    letter-spacing: 0.72px;
+    cursor: pointer;
+}
+
+.paint-card-container .btns button:first-child {
+    color: white;
+    background-color: #4A55A2;
+    border-radius: 7px;
+}
+
+.paint-card-container .btns button:last-child {
+    color: #4A55A2;
+    border-radius: 7px;
+    border: 3px solid rgba(160, 191, 224, 0.73);
+}
+
+.paint-card-container .btns button:first-child:hover {
+    background-color: #39438b;
+}
+
+.paint-card-container .btns button:last-child:hover {
+    background-color: #e2e2e2;
+}

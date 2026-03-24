@@ -1,0 +1,144 @@
+.account-settings {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.account-settings .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.account-settings form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-settings .inp-container {
+    padding: 18px 68px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+    max-width: 846px;
+    gap: 15px;
+}
+
+.account-settings .inp-container label p {
+    text-align: center;
+}
+
+.account-settings .center {
+    justify-content: center;
+}
+
+@media (max-width: 650px) {
+    .account-settings form {
+        padding-right: 15px;
+        padding-left: 0;
+    }
+
+    .account-settings .inp-container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.account-settings .inp-container label {
+    font-family: "Tajawal", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media (max-width: 1217px) {
+    .account-settings .inp-container {
+        justify-content: center;
+    }
+
+    .account-settings .inp-container .form-group {
+        text-align: center;
+    }
+}
+
+.account-settings .inp-container .form-group {
+    margin-bottom: 27px;
+}
+
+.account-settings .inp-container input,
+select {
+    display: block;
+    width: 281px;
+    height: 42px;
+    margin: 12px 0 0 4px;
+    border-radius: 6.45px;
+    border: 1px solid #8B8B8B;
+    background-color: #F5F5F5;
+    direction: ltr;
+    padding-left: 15px;
+}
+
+.account-settings .btns-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.account-settings form input[type="submit"],
+.account-settings .change-btn,
+.account-settings .cancle-btn {
+    border-radius: 8px;
+    width: 130px;
+    height: 30px;
+    background-color: #7895CB;
+    color: white;
+    font-family: Almarai;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.28px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.account-settings .btns-container .cancle-btn {
+    background-color: red;
+}
+
+.account-settings .errorMessage {
+    color: red;
+    text-align: right;
+    font-size: 13px;
+}
+
+.account-settings .current-data {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.account-settings .user-profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: brown;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: Manrope;
+    border-radius: 50%;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.account-settings .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

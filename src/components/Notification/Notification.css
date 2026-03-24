@@ -1,0 +1,24 @@
+.notification {
+    margin-bottom: 37px;
+}
+
+.notification .notification-container {
+    width: 917px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+.notification .notification-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification #paint-img {
+    width: 74px;
+}

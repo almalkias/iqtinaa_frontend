@@ -1,0 +1,25 @@
+.my-favourite .paint-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 341px);
+    grid-gap: 25px;
+    margin-top: 57px;
+    direction: rtl;
+    margin-right: 50px;
+}
+
+@media (max-width: 992px) {
+    .my-favourite .paint-cards {
+        margin-right: 0;
+    }
+}
+
+#no-fav-paints {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.my-favourite .empty-state h3 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}

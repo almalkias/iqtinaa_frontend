@@ -1,0 +1,32 @@
+.Search input[type="text"] {
+    box-sizing: border-box;
+    width: 207px;
+    height: 34px;
+    padding: 8px 16px;
+    box-shadow: 0px 0px 31px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 24px;
+    border: 0.25px solid #B8B8B8;
+}
+
+.Search input[type="text"]::placeholder {
+    color: #B8B8B8;
+    font-family: "SF Arabic";
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 22px;
+}
+
+.Search .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.Search .search-icon {
+    position: absolute;
+    left: 16px;
+    pointer-events: none;
+    width: 14px;
+    stroke-width: 1.75px;
+    stroke: #B8B8B8;
+}

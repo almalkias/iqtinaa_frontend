@@ -1,0 +1,116 @@
+.footer {
+    background: linear-gradient(180deg,
+            rgba(68, 116, 169, 0.04) 10.51%,
+            rgba(68, 116, 169, 0.09) 100%);
+    padding: 79px 0 20px;
+}
+
+.footer .container {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(217px, 1fr)); */
+    color: var(--Black, var(--Color-2, #000));
+    font-family: Almarai;
+    line-height: 101%;
+    letter-spacing: -0.28px;
+    text-align: right;
+    column-gap: 70px;
+    direction: rtl;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer .container .box {
+    width: 200px;
+}
+
+@media (max-width: 709px) {
+    .footer .box {
+        margin-top: 25px;
+    }
+}
+
+.footer .box .title {
+    font-size: 20px;
+    margin-bottom: 37px;
+    font-weight: 700;
+}
+
+.footer .box .contact-info {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 22px;
+    gap: 10px;
+}
+
+.footer .box .contact-info p {
+    margin-bottom: 0;
+}
+
+.footer .box p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 119%;
+    margin-bottom: 22px;
+}
+
+.footer .social-box {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1250px) {
+    .footer .social-box {
+        margin-top: 25px;
+    }
+}
+
+.footer .social .circle-bg img {
+    width: 22px;
+}
+
+.footer .box .social .circle-bg {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    padding: 6px;
+    position: relative;
+}
+
+.footer .social-box p {
+    margin-top: 10px;
+}
+
+.footer .box .social {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer .box .social .social-icon {
+    font-size: 30px;
+}
+
+@media (max-width: 1400px) {
+    .footer .container {
+        text-align: center;
+    }
+
+    .footer .box .social {
+        justify-content: center;
+    }
+
+    .footer .box .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1050px) {
+    .footer .social-box {
+        justify-content: center;
+    }
+}

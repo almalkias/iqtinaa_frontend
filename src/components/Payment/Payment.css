@@ -1,0 +1,66 @@
+.payment .logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.payment-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 80px;
+}
+
+.payment-form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.payment-form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.payment-form-container .card-element {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.payment-form-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4A55A2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.payment-form-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.payment-form-container .error-message {
+    color: #e5424d;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.StripeElement {
+  direction: rtl;
+}

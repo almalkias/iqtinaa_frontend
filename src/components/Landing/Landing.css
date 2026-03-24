@@ -1,0 +1,126 @@
+.landing {
+    overflow: hidden;
+    padding-top: 50px;
+}
+
+.landing .overlay {
+    width: 110%;
+    height: 8.75rem;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    position: relative;
+    right: 5%;
+    z-index: 2;
+}
+
+.landing .overlay-top {
+    top: 2.5rem;
+}
+
+.landing .overlay-bottom {
+    bottom: 3.5rem;
+}
+
+.landing .images img {
+    width: 25.6vw;
+    margin-left: 20px;
+}
+
+.banner-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-wrapper .wrapper {
+    display: flex;
+}
+
+.banner-wrapper .wrapper .images {
+    display: flex;
+    animation: swipe 15s linear infinite;
+}
+
+@keyframes swipe {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 700px) {
+    .landing .overlay {
+        height: 2.75rem;
+    }
+
+    .landing .overlay-top {
+        top: 14px;
+    }
+
+    .landing .overlay-bottom {
+        bottom: 23px;
+    }
+}
+
+.landing .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 901px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.landing .content h1 {
+    font-family: "SF Arabic";
+    font-size: 54.93px;
+    padding-bottom: 24px;
+}
+
+.landing .content p {
+    direction: rtl;
+    font-size: 28.13px;
+    font-weight: 267;
+    padding: 0 20px;
+}
+
+.landing .content .btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 52px 5px 0;
+}
+
+.landing .btns a {
+    width: 175px;
+    height: 46px;
+    border-radius: 5px;
+    border: 1px #6184ab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.landing .btns a:first-child {
+    background-color: white;
+    color: #3572B7;
+}
+
+.landing .btns a:last-child {
+    background-color: #3572B7;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .landing .content h1 {
+        font-size: 44px;
+    }
+
+    .landing .content p {
+        font-size: 20px;
+    }
+}

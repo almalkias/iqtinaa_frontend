@@ -1,0 +1,61 @@
+.advantages {
+    margin-top: 261px;
+}
+
+.advantages hr {
+    position: relative;
+    top: 30px;
+}
+
+.advantages .question {
+    background-color: #f5f5f5;
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.advantages h1 {
+    font-size: 40px;
+}
+
+.advantages .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 57px;
+    justify-content: center;
+}
+
+.advantages .card {
+    width: 341px;
+    height: 426px;
+    background-color: white;
+    text-align: center;
+    letter-spacing: 0.6px;
+    padding: 45px 40px 64px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.advantages .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.advantages .card .info {
+    font-family: "Alumni Sans";
+    text-align: center;
+    letter-spacing: 0.6px;
+    font-size: 24px;
+    padding-top: 30px;
+}
+
+.advantages .card .info h2 {
+    font-weight: 700;
+    padding-bottom: 30px;
+}
+
+.advantages .card .info p {
+    min-width: 271px;
+    font-weight: 500;
+}

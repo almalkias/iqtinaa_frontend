@@ -1,0 +1,110 @@
+.payment-success {
+    min-height: 100vh;
+    padding: 48px 20px 72px;
+    background:
+        radial-gradient(circle at top, rgba(74, 85, 162, 0.14), transparent 32%),
+        linear-gradient(180deg, #f8faff 0%, #eef3fb 100%);
+}
+
+.payment-success .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 44px;
+}
+
+.payment-success .logo a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.payment-success-card {
+    width: min(100%, 640px);
+    margin: 0 auto;
+    padding: 44px 36px;
+    border: 1px solid rgba(74, 85, 162, 0.12);
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 24px 60px rgba(28, 37, 86, 0.12);
+    text-align: center;
+    direction: rtl;
+}
+
+.payment-success-card .success-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #dff7e6 0%, #c8efd2 100%);
+    color: #1f7a3d;
+    font-family: Cairo, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.payment-success-card h1 {
+    margin: 22px 0 12px;
+    color: #1f2544;
+    font-family: Cairo, sans-serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+}
+
+.payment-success-card p {
+    margin: 0 auto;
+    max-width: 460px;
+    color: #596079;
+    font-family: Cairo, sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.payment-success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.payment-success-actions a {
+    min-width: 172px;
+    min-height: 48px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: Almarai, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-success-actions .primary-action {
+    background-color: #4A55A2;
+    color: white;
+}
+
+.payment-success-actions .secondary-action {
+    border: 1px solid rgba(74, 85, 162, 0.24);
+    color: #4A55A2;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .payment-success {
+        padding-top: 32px;
+    }
+
+    .payment-success-card {
+        padding: 32px 22px;
+        border-radius: 18px;
+    }
+
+    .payment-success-actions a {
+        width: 100%;
+    }
+}

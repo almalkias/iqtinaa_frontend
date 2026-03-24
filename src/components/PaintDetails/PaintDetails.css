@@ -1,0 +1,118 @@
+.paint-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 200px 247px 200px 140px;
+    text-align: right;
+    gap: 63px;
+    background-color: #FFF;
+}
+
+.paint-details .paint-thumbnail {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.paint-details .paint-thumbnail img {
+    width: 42px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.paint-details .painting-info {
+    color: var(--Grey, #65635F);
+    text-align: right;
+    font-family: Cairo;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    direction: rtl;
+}
+
+.paint-details .painting-info h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.paint-details .painting-info h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.paint-details .painting-description {
+    margin-top: 44px;
+    margin-bottom: 24px;
+}
+
+.paint-details hr {
+    margin-top: 31.5px;
+    margin-bottom: 19.5px;
+}
+
+.paint-details .purchase-details {
+    color: var(--Grey, #65635F);
+    font-family: Karla;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.paint-details #painting-price {
+    margin-bottom: 19px;
+    direction: rtl;
+    color: var(--black, #161412);
+    font-family: Cairo;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.paint-details .ship-info {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.paint-details button {
+    margin-top: 26px;
+    margin-bottom: 10px;
+    width: 279px;
+    height: 48px;
+    border: none;
+    border-radius: 2px;
+    background: #4A55A2;
+    color: var(--White, #FFF);
+    font-family: Abel;
+    letter-spacing: 1px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+@media (max-width: 1240px) {
+    .paint-details {
+        flex-direction: column;
+        gap: 10px;
+        padding: 150px 100px;
+    }
+
+    .paint-details .paint-thumbnail {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .paint-details .painting-info {
+        text-align: center;
+    }
+
+    .paint-details .ship-info {
+        justify-content: center;
+    }
+}
+
+.paint-details .paint-image img {
+    max-width: 290px;
+}
