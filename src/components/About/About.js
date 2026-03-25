@@ -8,7 +8,6 @@ import "./About.css";
 function About() {
     return (
         <div className="about">
-            <h1>من إقتناء ؟ </h1>
             <div className="box">
                 <div className="question">
                     <img src={red_logo} alt="" />
@@ -24,7 +23,7 @@ function About() {
             <div className="box">
                 <div className="question">
                     <img src={blue_logo} alt="" />
-                    <h3>ما هي أهدافنا ؟</h3>
+                    <h3> أهدافنا </h3>
                 </div>
                 <ul>
                     <li>

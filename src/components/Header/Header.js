@@ -113,33 +113,37 @@ function Header() {
             )}
           </div>
           <div className="right">
-            <div className="dropdown circle-bg">
-              <img src={settings} alt="" />
-              <div className="dropdown-content">
-                {authToken ? (
-                  <>
-                    <button onClick={onClick}>تسجيل خروج</button>
-                  </>
-                ) : (
-                  <Link to="/login">تسجيل الدخول</Link>
-                )}
-              </div>
-            </div>
-            <Link to="/account/account-settings" className="circle-bg">
-              <img src={user} alt="" />
-            </Link>
-            <Link to="/cart" className="circle-bg">
-              {cartItems && cartItems.length > 0 && (
-                <div className="quantity-circle">
-                  {" "}
-                  {totalQuantity()}{" "}
+            {authToken ? (
+              <>
+                <div className="dropdown circle-bg">
+                  <img src={settings} alt="" onClick={onClick} />
                 </div>
-              )}
-              <img src={shopping_cart} alt="" />
-            </Link>
-            <Link to="/account/my-favourite" className="circle-bg">
-              <img src={heart} alt="" />
-            </Link>
+                <Link to="/account/account-settings" className="circle-bg">
+                  <img src={user} alt="" />
+                </Link>
+                <Link to="/cart" className="circle-bg">
+                  {cartItems && cartItems.length > 0 && (
+                    <div className="quantity-circle">
+                      {" "}
+                      {totalQuantity()}{" "}
+                    </div>
+                  )}
+                  <img src={shopping_cart} alt="" />
+                </Link>
+                <Link to="/account/my-favourite" className="circle-bg">
+                  <img src={heart} alt="" />
+                </Link>
+              </>
+            ) : (
+              <div className="auth-actions">
+                <Link to="/login" className="auth-btn auth-btn-secondary">
+                  تسجيل الدخول
+                </Link>
+                <Link to="/register" className="auth-btn auth-btn-primary">
+                  إنشاء حساب
+                </Link>
+              </div>
+            )}
             <a href="!#" className="circle-bg global-two">
               <img src={global} alt="" />
             </a>
