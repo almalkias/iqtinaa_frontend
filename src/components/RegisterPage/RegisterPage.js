@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Terms from "../Terms/Terms";
 import logo from '../../assets/images/logo-2.png';
@@ -6,7 +6,6 @@ import title from '../../assets/images/title-2.png';
 import circle_1 from '../../assets/images/1.svg';
 import circle_2 from '../../assets/images/2.svg';
 import circle_3 from '../../assets/images/3.svg';
-import flag from '../../assets/images/saudi-flag.png';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -46,13 +45,6 @@ const validationSchema = Yup.object({
 })
 
 function RegisterPage() {
-  const [validationStatus, setValidationStatus] = useState({
-    length: false,
-    uppercase: false,
-    lowercase: false,
-    number: false,
-    special: false
-  });
   const [showModal, setShowModal] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState(faEyeSlash);
@@ -98,16 +90,6 @@ function RegisterPage() {
     // }, 100000);
   };
 
-  const handlePasswordChange = (value) => {
-    setValidationStatus({
-      length: value.length >= 8,
-      uppercase: /[A-Z]/.test(value),
-      lowercase: /[a-z]/.test(value),
-      number: /[0-9]/.test(value),
-      special: /[^\w]/.test(value)
-    });
-  };
-
   return (
     <div className="register">
       <div className='container'>
@@ -129,23 +111,6 @@ function RegisterPage() {
             >
               {({ handleChange }) => (
                 <Form noValidate>
-                  {/* <div className='form-field-group'>
-                    <label htmlFor="username"><span> * </span>أسم المستخدم</label>
-                    <Field type="text" id="username" name="username" />
-                    <ErrorMessage name="username">
-                      {msg => <div className="errorMessage">{msg}</div>}
-                    </ErrorMessage>
-                  </div>
-
-                  <div className='form-field-group'>
-                    <label htmlFor="telephone"><span> * </span>رقم الهاتف</label>
-                    <img src={flag} alt='' id='flag' />
-                    <Field type="text" id="telephone" name="telephone" placeholder='+966555555555' />
-                    <ErrorMessage name="telephone">
-                      {msg => <div className="errorMessage">{msg}</div>}
-                    </ErrorMessage>
-                  </div> */}
-
                   <div className='form-field-group'>
                     <label htmlFor="email"><span> * </span>الايميل</label>
                     <Field type="email" id="email" name="email" />
@@ -159,28 +124,10 @@ function RegisterPage() {
                     <FontAwesomeIcon icon={passwordIcon} className='eye-icon' onClick={showPassword} />
                     <Field type={passwordType} name="password" id="password" onChange={(e) => {
                       handleChange(e);
-                      handlePasswordChange(e.target.value);
                     }} />
                     <ErrorMessage name="password">
                       {msg => <div className="errorMessage">{msg}</div>}
                     </ErrorMessage>
-                    {/* <div className="password-check">
-                      <div className={validationStatus.length ? 'valid' : 'invalid'}>
-                        8 خانات على الاقل
-                      </div>
-                      <div className={validationStatus.uppercase ? 'valid' : 'invalid'}>
-                        حرف كبير (A-Z)
-                      </div>
-                      <div className={validationStatus.lowercase ? 'valid' : 'invalid'}>
-                        حرف صغير (a-z)
-                      </div>
-                      <div className={validationStatus.number ? 'valid' : 'invalid'}>
-                        رقم (0-9)
-                      </div>
-                      <div className={validationStatus.special ? 'valid' : 'invalid'}>
-                        رمز خاص (~!@#$%^&*)
-                      </div>
-                    </div> */}
                   </div>
 
                   <div className='form-field-group'>

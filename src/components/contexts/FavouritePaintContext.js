@@ -10,10 +10,10 @@ export const FavouritePaintProvider = ({ children }) => {
   const { isLoggedIn } = useContext(AuthContext);
   const { setIsLoading } = useLoading();
 
-  // ✅ ADD (Optimistic UI)
+  // Add with optimistic UI
   const addFavouritePaint = async (paint) => {
 
-    // 🔥 Update immediately
+    // Update immediately
     setFavouritePaints(prev => {
       if (prev.some(p => p.id === paint.id)) return prev;
       return [...prev, paint];
@@ -24,19 +24,19 @@ export const FavouritePaintProvider = ({ children }) => {
     } catch (error) {
       console.error('Error adding favorite paint:', error);
 
-      // ❌ rollback
+      // Roll back on failure
       setFavouritePaints(prev =>
         prev.filter(p => p.id !== paint.id)
       );
     }
   };
 
-  // ✅ REMOVE (Optimistic UI)
+  // Remove with optimistic UI
   const removeFavouritePaint = async (paintId) => {
 
     const previous = [...favouritePaints];
 
-    // 🔥 Update immediately
+    // Update immediately
     setFavouritePaints(prev =>
       prev.filter(p => p.id !== paintId)
     );
@@ -46,12 +46,12 @@ export const FavouritePaintProvider = ({ children }) => {
     } catch (error) {
       console.error('Error removing favorite paint:', error);
 
-      // ❌ rollback
+      // Roll back on failure
       setFavouritePaints(previous);
     }
   };
 
-  // ✅ GET ALL (🔥 key change here)
+  // Get all favorites
   useEffect(() => {
     const fetchFavouritePaints = async () => {
       if (!isLoggedIn) return;
@@ -61,7 +61,7 @@ export const FavouritePaintProvider = ({ children }) => {
       try {
         const response = await apiClient.get('/favourites/');
 
-        // ✅ Use only the results array
+        // Use only the results array
         setFavouritePaints(response.data.results || []);
 
       } catch (error) {

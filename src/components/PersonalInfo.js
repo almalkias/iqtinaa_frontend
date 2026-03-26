@@ -53,7 +53,7 @@ function PersonalInfo() {
 
   return (
     <div className="personal-info section">
-      {/* <h3>البيانات الشخصية :</h3> */}
+      {/* <h3>Personal information:</h3> */}
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}

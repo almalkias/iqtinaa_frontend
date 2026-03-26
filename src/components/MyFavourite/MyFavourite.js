@@ -6,7 +6,7 @@ import "./MyFavourite.css";
 function MyFavourite() {
   const { favouritePaints } = useContext(FavouritePaintContext);
 
-  // ✅ Guard against non-array values
+  // Guard against non-array values
   const paints = Array.isArray(favouritePaints) ? favouritePaints : [];
 
   return (

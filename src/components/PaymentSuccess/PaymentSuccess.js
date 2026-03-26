@@ -18,7 +18,7 @@ function PaymentSuccess() {
       setIsLoading(true);
 
       try {
-        // 🔥 ننتظر الويبهوك شوي
+        // Wait briefly for the webhook to finish
         await new Promise((res) => setTimeout(res, 1500));
         await fetchCart();
       } catch (err) {

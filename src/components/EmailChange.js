@@ -50,14 +50,16 @@ function EmailChange() {
       console.log("Email updated:", response.data);
 
       // Log out after changing the email
-      logout();
+      await logout();
       navigate("/login");
-
     } catch (error) {
       if (error.response?.data) {
-        setErrors(error.response.data);
+        const apiErrors = error.response.data;
+
+        setErrors({
+          new_email: apiErrors.email
+        });
       }
-      console.error(error);
     } finally {
       setIsLoading(false);
     }

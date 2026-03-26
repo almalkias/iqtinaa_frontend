@@ -12,7 +12,7 @@ import MyNotifications from "./components/MyNotifications/MyNotifications";
 import LoginPage from "./components/LoginPage/LoginPage";
 import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
-import ActivateAccount from "./components/ActivateAccount/ActivateAccount";
+// import ActivateAccount from "./components/ActivateAccount/ActivateAccount";
 import PasswordReset from "./components/PasswordReset/PasswordRest";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import StripePaymentForm from "./components/Payment/Payment";
@@ -42,9 +42,9 @@ const Router = () => {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/activate/:uid/:token" element={<ActivateAccount />} />
+                {/* <Route path="/activate/:uid/:token" element={<ActivateAccount />} /> */}
                 <Route path="/forget-password" element={<ForgetPassword />} />
-                <Route path="/password/reset/confirm/:uid/:token" element={<PasswordReset />} />
+                <Route path="/reset-password-confirm" element={<PasswordReset />} />
                 <Route path="/payment" element={<StripePaymentForm />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
             </Routes>

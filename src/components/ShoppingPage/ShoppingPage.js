@@ -5,7 +5,7 @@ import filter from '../../assets/images/filter.svg';
 import arrow_left from '../../assets/images/arrow-square-left.svg';
 import arrow_right from '../../assets/images/arrow-square-right.svg';
 import "./ShoppingPage.css";
-import axios from 'axios';
+import apiClient from "../../api/client";
 import { useLoading } from '../contexts/LoadingContext';
 
 function ShoppingPage() {
@@ -18,9 +18,9 @@ function ShoppingPage() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`/products/?page=${page}`);
+        const response = await apiClient.get(`/products/?page=${page}`);
         setPaints(response.data.results);
-        // 🔥 Calculate the total number of pages
+        // Calculate the total number of pages
         setTotalPages(Math.ceil(response.data.count / 6));
       } catch (error) {
         console.error('There was an error fetching the paintings:', error);
@@ -30,16 +30,16 @@ function ShoppingPage() {
     };
 
     fetchData();
-  }, [page, setIsLoading]);
+  }, [page]);
 
   return (
     <div className='shopping-page'>
       <div className='container'>
-        <div className="sorting">
+        {/* <div className="sorting">
           <div className="text">عرض خاص 25 من 290</div>
           <button className="button active">فرز<img src={chevron} alt="" /></button>
           <button className="button">تصفيه<img src={filter} alt="" /></button>
-        </div>
+        </div> */}
         <div className='paint-cards'>
           {paints.map((paint) => (
             <PaintCard key={paint.id} paint={paint} />

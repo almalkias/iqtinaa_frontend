@@ -16,12 +16,10 @@ import "./Payment.css";
 import logo from "../../assets/images/logo-2.png";
 import title from "../../assets/images/title-2.png";
 
-// 🔑 Stripe public key
+// Stripe public key
 const stripePromise = loadStripe("pk_test_51TDoAPAbWn7WhVRQpxmIh8idOanR9hCI78qiUfODQqQaKMJEQwbknHVduLAGT9KXiFtlE4tswJiUEcVdRRuJEdGy00GArG8emF");
 
-// ============================
-// 🔥 FORM COMPONENT
-// ============================
+// Form component
 const CheckoutForm = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -31,7 +29,7 @@ const CheckoutForm = ({ clientSecret }) => {
 
   const [error, setError] = useState("");
   const [processing, setProcessing] = useState(false);
-  const [cardName, setCardName] = useState(""); // 👈 جديد
+  const [cardName, setCardName] = useState(""); // Cardholder name
 
   const navigate = useNavigate();
 
@@ -50,7 +48,7 @@ const CheckoutForm = ({ clientSecret }) => {
         payment_method: {
           card: cardElement,
           billing_details: {
-            name: cardName, // 👈 مهم
+            name: cardName, // Required cardholder name
           },
         },
       });
@@ -78,13 +76,13 @@ const CheckoutForm = ({ clientSecret }) => {
 
       <h2>طريقة الدفع</h2>
 
-      {/* 💰 السعر */}
+      {/* Price */}
       <div style={{ direction: "rtl", marginBottom: "12px" }}>
         <span>المجموع: </span>
         <span>{getCartTotal()} ر.س</span>
       </div>
 
-      {/* 👤 اسم البطاقة */}
+      {/* Cardholder name */}
       <input
         type="text"
         placeholder="اسم صاحب البطاقة"
@@ -94,7 +92,7 @@ const CheckoutForm = ({ clientSecret }) => {
         className="card-name-input"
       />
 
-      {/* 💳 بيانات البطاقة */}
+      {/* Card details */}
       <div className="card-element-wrapper">
         <CardElement
           options={{
@@ -119,9 +117,7 @@ const CheckoutForm = ({ clientSecret }) => {
 };
 
 
-// ============================
-// 🔥 MAIN PAGE
-// ============================
+// Main page
 function PaymentPage() {
   const [clientSecret, setClientSecret] = useState(null);
   const { setIsLoading } = useLoading();
@@ -152,7 +148,7 @@ function PaymentPage() {
   return (
     <div className="payment">
 
-      {/* LOGO */}
+      {/* Logo */}
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="" />
@@ -160,7 +156,7 @@ function PaymentPage() {
         </Link>
       </div>
 
-      {/* STRIPE */}
+      {/* Stripe payment form */}
       {clientSecret && (
         <Elements
           stripe={stripePromise}

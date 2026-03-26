@@ -19,8 +19,14 @@ function PaintCard({ paint }) {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const paintDescription = paint.description || "لا يوجد وصف متاح لهذه اللوحة حالياً.";
+  const paintSize =
+    paint.width && paint.height
+      ? `${paint.width}*${paint.height} انش`
+      : "غير محدد";
+  const paintDate = paint.date || "غير متوفر";
 
-  // ✅ Compute it directly
+  // Compute this directly
   const isFavourite = favouritePaints.some(p => p.id === paint.id);
 
   const toggleDescription = () => {
@@ -35,12 +41,12 @@ function PaintCard({ paint }) {
     }
   };
 
-  // ✅ Main change is here
+  // Toggle the favorite item
   const toggleHeart = () => {
     if (isFavourite) {
       removeFavouritePaint(paint.id);
     } else {
-      addFavouritePaint(paint); // 🔥 Send the full object
+      addFavouritePaint(paint); // Send the full object
     }
   };
 
@@ -68,13 +74,9 @@ function PaintCard({ paint }) {
 
       <div className="paint-info">
         <div>
-          <h3>{paint.name}</h3> {/* 🔥 Use name instead of title */}
+          <h3>{paint.name}</h3> {/* Use name instead of title */}
         </div>
         <div className="price">{paint.price} ريال</div>
-      </div>
-
-      <div className="paint-meta">
-        <span>متبقي: {paint.stock}</span>
       </div>
 
       <div className="paint-description" onClick={toggleDescription}>
@@ -86,17 +88,17 @@ function PaintCard({ paint }) {
             </div>
 
             <div className="description">
-              <p>{paint.description}</p>
+              <p>{paintDescription}</p>
             </div>
 
             <div className="size">
               <p>حجم اللوحة</p>
-              {paint.width}*{paint.height} انش
+              {paintSize}
             </div>
 
             <div className="date">
               <p>نشرت منذ</p>
-              {paint.date}
+              {paintDate}
             </div>
           </>
         ) : (

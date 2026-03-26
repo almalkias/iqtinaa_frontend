@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
   const navigate = useNavigate();
   const { setIsLoading } = useLoading();
 
-  // ✅ ADD
+  // Add item
   const addToCart = async (product, buyNow = false) => {
     setIsLoading(true);
 
@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
         quantity: 1
       });
 
-      // 🔥 نحدث الكارت من الباك
+      // Refresh the cart from the backend
       fetchCart();
 
       if (buyNow) navigate('/cart');
@@ -34,14 +34,14 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ REMOVE ITEM بالكامل
+  // Remove the full item
   const removeFromCart = async (itemId) => {
     setIsLoading(true);
 
     try {
       await apiClient.delete(`/cart/${itemId}/delete/`);
 
-      // 🔥 نحدث من الباك
+      // Refresh the cart from the backend
       fetchCart();
 
     } catch (error) {
@@ -66,7 +66,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ UPDATE QUANTITY
+  // Update quantity
   const updateCartItem = async (itemId, quantity) => {
     setIsLoading(true);
 
@@ -84,7 +84,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ FETCH CART (مهم جدًا نخليه function مستقلة)
+  // Fetch the cart in a separate function
   const fetchCart = async () => {
     try {
       const response = await apiClient.get('/cart/');
@@ -96,7 +96,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ TOTAL PRICE
+  // Total price
   const getCartTotal = () => {
     return cartItems.reduce(
       (total, item) => total + Number(item.product.price) * item.quantity,
@@ -104,7 +104,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ TOTAL COUNT
+  // Total count
   const totalQuantity = () => {
     return cartItems.reduce(
       (total, item) => total + item.quantity,
@@ -112,7 +112,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ INIT
+  // Initialize cart state
   useEffect(() => {
     if (isLoggedIn) {
       setIsLoading(true);

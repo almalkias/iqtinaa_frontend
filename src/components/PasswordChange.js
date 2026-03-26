@@ -41,8 +41,8 @@ function PasswordChange() {
 
       console.log("Password updated:", response.data);
 
-      // 🔥 Important for security
-      logout();
+      // Important for security
+      await logout();
       navigate("/login");
 
     } catch (error) {

@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import apiClient from "../../api/client";
 import './ForgetPassword.css';
 import { useLoading } from '../contexts/LoadingContext';
 
@@ -39,11 +40,11 @@ function ForgetPassword() {
   const onSubmit = async (values, { setErrors }) => {
     setIsLoading(true);
     try {
-      const response = await axios.post('auth/users/reset_password/', values);
+      const response = await apiClient.post('accounts/forgot-password/', values);
       notify()
       console.log("Password reset request sent", response);
     } catch (error) {
-      setErrors(error.response.data);
+      setErrors(error.response.message);
       console.error("Error sending password reset request", error);
     } finally {
       setIsLoading(false);

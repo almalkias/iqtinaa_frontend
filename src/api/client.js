@@ -4,7 +4,7 @@ const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
-// 🔹 request interceptor
+// Request interceptor
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("authToken");
 
@@ -15,14 +15,14 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// 🔥 response interceptor (correct implementation)
+// Response interceptor
 apiClient.interceptors.response.use(
   (response) => response,
 
   async (error) => {
     const originalRequest = error.config;
 
-    // 👇 this check must stay here
+    // This check must stay here
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
@@ -54,7 +54,7 @@ apiClient.interceptors.response.use(
       } catch (refreshError) {
         console.error("Refresh token failed:", refreshError);
 
-        // logout
+        // Log out
         localStorage.removeItem("authToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("isLoggedIn");
