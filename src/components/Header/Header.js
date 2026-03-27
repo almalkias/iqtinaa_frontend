@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation, NavLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { CartContext } from "../contexts/CartContext";
@@ -13,8 +13,6 @@ import heart from "../../assets/images/heart.svg";
 import Hamburger from "../../assets/images/Hamburger_icon.svg";
 import settings from "../../assets/images/account-settings.svg";
 import "./Header.css";
-import { useLoading } from '../contexts/LoadingContext';
-
 
 function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -22,26 +20,50 @@ function Header() {
   const { logout, authToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const { setIsLoading } = useLoading();
 
-  const onClick = async () => {
+  const navLinks = [
+    { to: "/", label: "الرئيسية" },
+    { to: "/about", label: "من نحن" },
+    { to: "/shopping", label: "المعرض" },
+  ];
+
+  const accountLinks = [
+    { to: "/account/account-settings", icon: user, alt: "الحساب" },
+    { to: "/account/my-favourite", icon: heart, alt: "المفضلة" },
+  ];
+
+  const handleLogout = async () => {
     await logout();
     navigate(location.state?.from || "/");
   };
 
   const toggleMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
+    setIsMenuVisible((prev) => !prev);
   };
 
   useEffect(() => {
-    if (isMenuVisible) {
-      const originalStyle = window.getComputedStyle(
-        document.body,
-      ).overflow;
-      document.body.style.overflow = "hidden";
-      return () => (document.body.style.overflow = originalStyle); // Revert on cleanup
-    }
+    if (!isMenuVisible) return undefined;
+
+    const originalOverflow = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
   }, [isMenuVisible]);
+
+  const renderSocialLink = ({ className, onClick } = {}) => (
+    <ScrollLink
+      to="social"
+      smooth={true}
+      duration={500}
+      className={className}
+      style={{ cursor: "pointer" }}
+      onClick={onClick}
+    >
+      تواصل معنا
+    </ScrollLink>
+  );
 
   return (
     <div className="header">
@@ -61,14 +83,8 @@ function Header() {
             {isMenuVisible && (
               <>
                 <div className="page-overlay"></div>
-                <div
-                  className={`full-page-menu ${isMenuVisible ? "open" : ""
-                    }`}
-                >
-                  <span
-                    className="close-btn"
-                    onClick={toggleMenu}
-                  >
+                <div className={`full-page-menu ${isMenuVisible ? "open" : ""}`}>
+                  <span className="close-btn" onClick={toggleMenu}>
                     &times;
                   </span>
                   <Link to="/" className="logo-hover">
@@ -76,62 +92,39 @@ function Header() {
                     <img src={title} alt="" />
                   </Link>
                   <ul className="nav-hover">
-                    <li>
-                      <Link to="/" onClick={toggleMenu}>
-                        الرئيسية
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/about"
-                        onClick={toggleMenu}
-                      >
-                        من نحن
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/shopping"
-                        onClick={toggleMenu}
-                      >
-                        المعرض
-                      </Link>
-                    </li>
-                    <li>
-                      <ScrollLink
-                        to="social"
-                        smooth={true}
-                        duration={500}
-                        onClick={toggleMenu}
-                      >
-                        تواصل معنا
-                      </ScrollLink>
-                    </li>
+                    {navLinks.map(({ to, label }) => (
+                      <li key={to}>
+                        <Link to={to} onClick={toggleMenu}>
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                    <li>{renderSocialLink({ onClick: toggleMenu })}</li>
                   </ul>
                 </div>
               </>
             )}
           </div>
+
+
           <div className="right">
             {authToken ? (
               <>
                 <div className="dropdown circle-bg">
-                  <img src={settings} alt="" onClick={onClick} />
+                  <img src={settings} alt="تسجيل الخروج" onClick={handleLogout} />
                 </div>
-                <Link to="/account/account-settings" className="circle-bg">
-                  <img src={user} alt="" />
-                </Link>
+
+                {accountLinks.map(({ to, icon, alt }) => (
+                  <Link key={to} to={to} className="circle-bg">
+                    <img src={icon} alt={alt} />
+                  </Link>
+                ))}
+
                 <Link to="/cart" className="circle-bg">
                   {cartItems && cartItems.length > 0 && (
-                    <div className="quantity-circle">
-                      {" "}
-                      {totalQuantity()}{" "}
-                    </div>
+                    <div className="quantity-circle">{totalQuantity()}</div>
                   )}
-                  <img src={shopping_cart} alt="" />
-                </Link>
-                <Link to="/account/my-favourite" className="circle-bg">
-                  <img src={heart} alt="" />
+                  <img src={shopping_cart} alt="السلة" />
                 </Link>
               </>
             ) : (
@@ -144,10 +137,13 @@ function Header() {
                 </Link>
               </div>
             )}
-            <a href="!#" className="circle-bg global-two">
+
+            {/* <a href="!#" className="circle-bg global-two">
               <img src={global} alt="" />
-            </a>
+            </a> */}
           </div>
+
+
           <div className="left">
             <a href="!#" className="circle-bg global-one">
               <img src={global} alt="" />
@@ -155,34 +151,21 @@ function Header() {
             <Search />
           </div>
           <ul className="nav">
-            <li>
-              <ScrollLink
-                to="social"
-                smooth={true}
-                duration={500}
-                className="nav-link"
-                style={{ cursor: "pointer" }}
-              >
-                تواصل معنا
-              </ScrollLink>
-            </li>
-            <li>
-              <NavLink to="/shopping" activeclassname="active">المعرض</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" activeclassname="active">
-                من نحن
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/" activeclassname="active">
-                الرئيسية
-              </NavLink>
-            </li>
+            <li>{renderSocialLink({ className: "nav-link" })}</li>
+            {navLinks
+              .slice()
+              .reverse()
+              .map(({ to, label }) => (
+                <li key={to}>
+                  <NavLink to={to} activeclassname="active">
+                    {label}
+                  </NavLink>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

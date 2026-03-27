@@ -9,6 +9,7 @@
     display: flex;
     gap: 24px;
     margin-top: 15px;
+    justify-content: space-around;
 }
 
 .cart .cart-container .cart-item-details {
@@ -73,7 +74,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 71px;
+    gap: 50px;
 }
 
 .cart .cart-item-details .icons {
@@ -101,77 +102,189 @@
 
 .cart .cart-container .cart-price-details {
     width: 380px;
-    border-radius: 4px;
-    border: 1px solid #D9D9D9;
-    background: white;
-    padding: 16px 16px 24px;
+    border-radius: 20px;
+    border: 1px solid #e6e1d8;
+    background: linear-gradient(180deg, #fffdf9 0%, #ffffff 100%);
+    padding: 24px;
+    align-self: flex-start;
+    box-shadow: 0 18px 45px rgba(26, 26, 26, 0.08);
+}
+
+.cart .cart-container .cart-price-details .summary-header {
+    margin-bottom: 20px;
+}
+
+.cart .cart-container .cart-price-details .summary-header h3 {
+    margin: 0 0 6px;
+    color: #1f2937;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.cart .cart-container .cart-price-details .summary-header p {
+    margin: 0;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart .cart-container .cart-price-details .summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
 .cart .cart-container .cart-price-details .row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
+}
+
+.cart .cart-container .cart-price-details .summary-item {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #f7f3eb;
+    border: 1px solid #efe7d9;
+}
+
+.cart .cart-container .cart-price-details .summary-item h4,
+.cart .cart-container .cart-price-details .summary-row h4,
+.cart .cart-container .cart-price-details .summary-item>h4 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cart .cart-container .cart-price-details .summary-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cart .cart-container .cart-price-details .summary-item-info span {
+    color: #7a7a7a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cart .cart-container .cart-price-details .summary-row {
+    margin-bottom: 8px;
+}
+
+.cart .cart-container .cart-price-details .delivery-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #ebf7ee;
+    color: #1f7a38;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .cart .cart-container .cart-price-details hr {
-    background: #D9D9D9;
-    margin-top: 21px;
-    margin-bottom: 16px;
+    border: none;
+    border-top: 1px solid #e7e0d4;
+    margin: 20px 0 18px;
 }
 
-.cart .cart-container .cart-price-details form {
+.cart .cart-container .cart-price-details .coupon-form {
     display: flex;
     justify-content: center;
-    width: 332px;
+    width: 100%;
     height: 56px;
-    margin-bottom: 37px;
+    margin-bottom: 24px;
+    gap: 10px;
 }
 
-.cart .cart-container .cart-price-details form input[type="text"] {
+.cart .cart-container .cart-price-details .coupon-form input[type="text"] {
     flex-grow: 3;
     padding: 16px;
-    border-radius: 4px;
-    border: 1px solid #D9D9D9;
+    border-radius: 12px;
+    border: 1px solid #ddd3c2;
+    background: #fff;
+    outline: none;
 }
 
-.cart .cart-container .cart-price-details form input[type="text"]::placeholder {
+.cart .cart-container .cart-price-details .coupon-form input[type="text"]::placeholder {
     color: #B8B8B8;
     font-family: Cairo;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.cart .cart-container .cart-price-details form input[type="submit"] {
-    flex-grow: 2;
-    color: #000;
+.cart .cart-container .cart-price-details .coupon-form input[type="submit"] {
+    flex-grow: 1;
+    color: #3e4a90;
     font-family: Cairo;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: -0.28px;
-    background-color: white;
-    border-radius: 4px;
-    border: 1px solid #D9D9D9;
+    background-color: #f4f0e7;
+    border-radius: 12px;
+    border: 1px solid #ddd3c2;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cart .cart-container .cart-price-details .coupon-form input[type="submit"]:hover {
+    background-color: #ece4d6;
+    transform: translateY(-1px);
+}
+
+.cart .cart-container .cart-price-details .total-row {
+    align-items: flex-end;
+}
+
+.cart .cart-container .cart-price-details .total-row h3 {
+    margin: 0;
+    color: #111827;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.cart .cart-container .cart-price-details .total-row p {
+    margin: 6px 0 0;
+    color: #8b8b8b;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .cart .cart-container .cart-price-details .btn {
-    width: 332px;
+    width: 100%;
     height: 56px;
-    border-radius: 4px;
+    border-radius: 14px;
     background: #4A55A2;
-    margin: 75px auto 24px;
+    margin: 28px auto 0;
     color: white;
     text-align: center;
     font-family: Cairo;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
     border: none;
     cursor: pointer;
+    box-shadow: 0 14px 24px rgba(74, 85, 162, 0.24);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart .cart-container .cart-price-details .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 28px rgba(74, 85, 162, 0.28);
 }
 
 @media (max-width: 1050px) {
     .cart .cart-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .cart .cart-container .cart-price-details {
+        align-self: auto;
     }
 }
 
@@ -194,16 +307,15 @@
         text-align: center;
     }
 
-    .cart .cart-container .cart-price-details {
-        width: 130%;
-    }
-
     .cart .cart-container .cart-price-details .row {
         flex-direction: column;
+        align-items: flex-start;
     }
 
-    .cart .cart-container .cart-price-details form {
+    .cart .cart-container .cart-price-details .coupon-form {
+        flex-direction: column;
         width: 100%;
+        height: auto;
     }
 
     .cart .cart-container .cart-price-details .btn {

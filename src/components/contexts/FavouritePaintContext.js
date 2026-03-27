@@ -10,10 +10,9 @@ export const FavouritePaintProvider = ({ children }) => {
   const { isLoggedIn } = useContext(AuthContext);
   const { setIsLoading } = useLoading();
 
-  // Add with optimistic UI
   const addFavouritePaint = async (paint) => {
+    const previous = [...favouritePaints];
 
-    // Update immediately
     setFavouritePaints(prev => {
       if (prev.some(p => p.id === paint.id)) return prev;
       return [...prev, paint];
@@ -23,54 +22,39 @@ export const FavouritePaintProvider = ({ children }) => {
       await apiClient.post(`/favourites/${paint.id}/`);
     } catch (error) {
       console.error('Error adding favorite paint:', error);
-
-      // Roll back on failure
-      setFavouritePaints(prev =>
-        prev.filter(p => p.id !== paint.id)
-      );
-    }
-  };
-
-  // Remove with optimistic UI
-  const removeFavouritePaint = async (paintId) => {
-
-    const previous = [...favouritePaints];
-
-    // Update immediately
-    setFavouritePaints(prev =>
-      prev.filter(p => p.id !== paintId)
-    );
-
-    try {
-      await apiClient.delete(`/favourites/${paintId}/`);
-    } catch (error) {
-      console.error('Error removing favorite paint:', error);
-
-      // Roll back on failure
       setFavouritePaints(previous);
     }
   };
 
-  // Get all favorites
+  const removeFavouritePaint = async (paintId) => {
+    const previous = [...favouritePaints];
+
+    setFavouritePaints(prev =>
+      prev.filter(p => p.id !== paintId)
+    );
+    
+    try {
+      await apiClient.delete(`/favourites/${paintId}/`);
+    } catch (error) {
+      console.error('Error removing favorite paint:', error);
+      setFavouritePaints(previous);
+    }
+  };
+
   useEffect(() => {
     const fetchFavouritePaints = async () => {
       if (!isLoggedIn) return;
-
       setIsLoading(true);
-
       try {
         const response = await apiClient.get('/favourites/');
-
         // Use only the results array
         setFavouritePaints(response.data.results || []);
-
       } catch (error) {
         console.error('Error fetching favorite paints:', error);
       } finally {
         setIsLoading(false);
       }
     };
-
     fetchFavouritePaints();
   }, [isLoggedIn]);
 

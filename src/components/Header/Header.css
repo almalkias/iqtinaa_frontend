@@ -103,15 +103,15 @@
 }
 
 .header .auth-btn-primary {
-    background-color: #3572B7;
-    color: #fff;
-    border: 1px solid #3572B7;
+    border: 1px solid #5b85c1;
+    background-color: #5b85c1;
+    color: white;
 }
 
 .header .auth-btn-secondary {
     background-color: #fff;
-    color: #3572B7;
-    border: 1px solid #3572B7;
+    color: #5b85c1;
+    border: 1px solid #5b85c1;
 }
 
 @media (min-width: 800px) {

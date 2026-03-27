@@ -55,7 +55,7 @@ function Cart() {
                 </div>
 
                 {/* QUANTITY */}
-                <div className="cart-item-quantity">
+                {/* <div className="cart-item-quantity">
 
                   <button
                     onClick={() =>
@@ -77,7 +77,7 @@ function Cart() {
                     +
                   </button>
 
-                </div>
+                </div> */}
 
                 {/* PRICE */}
                 <div className="cart-item-price">
@@ -98,35 +98,41 @@ function Cart() {
 
           {/* RIGHT */}
           <div className="cart-price-details">
+            <div className="summary-header">
+              <h3>ملخص الطلب</h3>
+              <p>مراجعة سريعة للعناصر قبل إتمام الدفع</p>
+            </div>
 
-            {cartItems.map((item) => (
-              <div className="row" key={item.id}>
-                <h3>
-                  {item.product.name}
-                  <span> {item.quantity}</span>
-                  <span>X</span>
-                </h3>
+            <div className="summary-items">
+              {cartItems.map((item) => (
+                <div className="row summary-item" key={item.id}>
+                  <div className="summary-item-info">
+                    <h4>{item.product.name}</h4>
+                    <span>الكمية: {item.quantity}</span>
+                  </div>
 
-                <h3>
-                  {Number(item.product.price) * item.quantity} ر.س
-                </h3>
-              </div>
-            ))}
+                  <h4>{Number(item.product.price) * item.quantity} ر.س</h4>
+                </div>
+              ))}
+            </div>
 
-            <div className="row">
-              <h3>رسوم التوصيل</h3>
-              <div>مجانا</div>
+            <div className="row summary-row">
+              <h4>رسوم التوصيل</h4>
+              <span className="delivery-badge">مجانا</span>
             </div>
 
             <hr />
 
-            <form>
+            <form className="coupon-form">
               <input type="text" placeholder="كوبون الخصم" />
               <input type="submit" value="تطبيق" />
             </form>
 
-            <div className="row">
-              <h3>المجموع</h3>
+            <div className="row total-row">
+              <div>
+                <h3>المجموع</h3>
+                <p>شامل جميع العناصر في السلة</p>
+              </div>
               <h3>{getCartTotal()} ر.س</h3>
             </div>
 

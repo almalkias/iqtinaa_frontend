@@ -13,22 +13,29 @@ export const CartProvider = ({ children }) => {
   const { setIsLoading } = useLoading();
 
   // Add item
-  const addToCart = async (product, buyNow = false) => {
+  const addToCart = async (productId, buyNow = false) => {
+    const isAlreadyInCart = cartItems.some(
+      (item) => item.product.id === productId
+    );
+
+    if (isAlreadyInCart) {
+      if (buyNow) navigate('/cart');
+      return { status: "exists" };
+    }
+
     setIsLoading(true);
 
     try {
       await apiClient.post('/cart/add/', {
-        product: product,
+        product: productId,
         quantity: 1
       });
-
-      // Refresh the cart from the backend
-      fetchCart();
-
+      await fetchCart();
       if (buyNow) navigate('/cart');
-
+      return { status: "added" };
     } catch (error) {
       console.error("Error adding to cart:", error.response?.data || error);
+      return { status: "error" };
     } finally {
       setIsLoading(false);
     }
@@ -40,10 +47,8 @@ export const CartProvider = ({ children }) => {
 
     try {
       await apiClient.delete(`/cart/${itemId}/delete/`);
-
       // Refresh the cart from the backend
-      fetchCart();
-
+      await fetchCart();
     } catch (error) {
       console.error("Error removing item:", error.response?.data || error);
     } finally {
@@ -56,7 +61,6 @@ export const CartProvider = ({ children }) => {
 
     try {
       await apiClient.delete("/cart/clear/");
-
       setCartItems([]);
     } catch (error) {
       console.error("Error clearing cart:", error.response?.data || error);
@@ -74,9 +78,7 @@ export const CartProvider = ({ children }) => {
       await apiClient.patch(`/cart/${itemId}/update/`, {
         quantity
       });
-
-      fetchCart();
-
+      await fetchCart();
     } catch (error) {
       console.error("Error updating item:", error.response?.data || error);
     } finally {
@@ -88,9 +90,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       const response = await apiClient.get('/cart/');
-
       setCartItems(response.data.items || []);
-
     } catch (error) {
       console.error("Error fetching cart:", error.response?.data || error);
     }

@@ -58,8 +58,12 @@ function PasswordChange() {
   return (
     <div className="password-change section">
       <div className="current-data">
-        <h3>تغيير كلمة المرور :</h3>
-        <h3>**********</h3>
+        {!showForm ? (
+          <>
+            <h3>تغيير كلمة المرور :</h3>
+            <h3>**********</h3>
+          </>
+        ) : null}
 
         {!showForm && (
           <button

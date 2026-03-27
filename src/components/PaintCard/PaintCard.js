@@ -8,6 +8,8 @@ import { FavouritePaintContext } from "../contexts/FavouritePaintContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solid_heart } from '@fortawesome/free-solid-svg-icons';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./PaintCard.css";
 
 function PaintCard({ paint }) {
@@ -33,11 +35,35 @@ function PaintCard({ paint }) {
     setShowDescription(!showDescription);
   };
 
-  const handleAddToCartClick = (item, buyNow) => {
+  const handleAddToCartClick = async (item, buyNow) => {
     if (!isLoggedIn) {
       navigate('/login', { replace: true, state: { from: location.pathname } });
     } else {
-      addToCart(item, buyNow);
+      const result = await addToCart(item, buyNow);
+
+      if (result?.status === "added" && !buyNow) {
+        toast.success("تمت اضافة اللوحة الى السلة", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
+      }
+
+      if (result?.status === "exists" && !buyNow) {
+        toast.info("اللوحة موجودة بالفعل في السلة", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
+      }
     }
   };
 
@@ -57,19 +83,11 @@ function PaintCard({ paint }) {
         <img id="paint-photo" src={paint.image} alt="" />
         {/* </Link> */}
 
-        {!isFavourite ? (
-          <FontAwesomeIcon
-            icon={faHeart}
-            className="heart-icon"
-            onClick={toggleHeart}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={solid_heart}
-            className="heart-icon solid-heart"
-            onClick={toggleHeart}
-          />
-        )}
+        <FontAwesomeIcon
+          icon={isFavourite ? solid_heart : faHeart}
+          className={`heart-icon${isFavourite ? " solid-heart" : ""}`}
+          onClick={toggleHeart}
+        />
       </div>
 
       <div className="paint-info">

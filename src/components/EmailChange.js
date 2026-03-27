@@ -68,8 +68,12 @@ function EmailChange() {
   return (
     <div className="email-change section">
       <div className="current-data">
-        <h3>البريد الالكتروني:</h3>
-        <h3>{profileData?.email}</h3>
+        {!showForm ? (
+          <>
+            <h3>البريد الالكتروني:</h3>
+            <h3>{profileData?.email}</h3>
+          </>
+        ) : null}
 
         {!showForm && (
           <button

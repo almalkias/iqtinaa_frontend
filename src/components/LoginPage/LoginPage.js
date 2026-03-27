@@ -114,7 +114,7 @@ function LoginPage() {
                 </ErrorMessage>
 
                 <div className='submit'>
-                  <input type="submit" value="تسجيل الدخول" />
+                  <input type="submit" value="تسجيل دخول" />
                   <div>ليس لديك حساب؟<Link to='/register'> إنشاء حساب</Link></div>
                   <div><Link to='/forget-password'>نسيت كلمة المرور ؟</Link></div>
                 </div>

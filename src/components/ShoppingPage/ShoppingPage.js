@@ -4,6 +4,8 @@ import chevron from '../../assets/images/chevron-down.svg';
 import filter from '../../assets/images/filter.svg';
 import arrow_left from '../../assets/images/arrow-square-left.svg';
 import arrow_right from '../../assets/images/arrow-square-right.svg';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ShoppingPage.css";
 import apiClient from "../../api/client";
 import { useLoading } from '../contexts/LoadingContext';
@@ -34,6 +36,7 @@ function ShoppingPage() {
 
   return (
     <div className='shopping-page'>
+      <ToastContainer rtl />
       <div className='container'>
         {/* <div className="sorting">
           <div className="text">عرض خاص 25 من 290</div>
