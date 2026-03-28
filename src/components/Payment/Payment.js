@@ -24,7 +24,7 @@ const CheckoutForm = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const { getCartTotal } = useContext(CartContext);
+  const { getCartTotal, getTax, getDiscount, getFinalTotal, coupon } = useContext(CartContext);
   const { setIsLoading } = useLoading();
 
   const [error, setError] = useState("");
@@ -76,10 +76,26 @@ const CheckoutForm = ({ clientSecret }) => {
 
       <h2>طريقة الدفع</h2>
 
-      {/* Price */}
-      <div style={{ direction: "rtl", marginBottom: "12px" }}>
-        <span>المجموع: </span>
-        <span>{getCartTotal()} ر.س</span>
+      {/* Price breakdown */}
+      <div className="payment-price-breakdown">
+        <div className="payment-price-row">
+          <span>المجموع الجزئي</span>
+          <span>{getCartTotal().toFixed(2)} ر.س</span>
+        </div>
+        <div className="payment-price-row">
+          <span>الضريبة (15%)</span>
+          <span>{getTax().toFixed(2)} ر.س</span>
+        </div>
+        {coupon && (
+          <div className="payment-price-row payment-discount-row">
+            <span>الخصم ({coupon.code})</span>
+            <span>- {getDiscount().toFixed(2)} ر.س</span>
+          </div>
+        )}
+        <div className="payment-price-row payment-total-row">
+          <span>الإجمالي</span>
+          <span>{getFinalTotal().toFixed(2)} ر.س</span>
+        </div>
       </div>
 
       {/* Cardholder name */}
@@ -121,6 +137,7 @@ const CheckoutForm = ({ clientSecret }) => {
 function PaymentPage() {
   const [clientSecret, setClientSecret] = useState(null);
   const { setIsLoading } = useLoading();
+  const { coupon } = useContext(CartContext);
 
   const hasFetched = useRef(false);
 
@@ -133,7 +150,8 @@ function PaymentPage() {
       setIsLoading(true);
 
       try {
-        const res = await apiClient.post("/payments/intent/");
+        const body = coupon ? { coupon_code: coupon.code } : {};
+        const res = await apiClient.post("/payments/intent/", body);
         setClientSecret(res.data.client_secret);
       } catch (error) {
         console.error("Error creating payment intent:", error);

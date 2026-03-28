@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logo.png";
 import title from "../../assets/images/title.png";
 import trash from "../../assets/images/trash.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { CartContext } from "../contexts/CartContext";
@@ -11,10 +11,34 @@ import "./Cart.css";
 function Cart() {
   const {
     cartItems,
+    coupon,
     removeFromCart,
     updateCartItem,
-    getCartTotal
+    getCartTotal,
+    applyCoupon,
+    removeCoupon,
+    getTax,
+    getDiscount,
+    getFinalTotal
   } = useContext(CartContext);
+
+  const [couponCode, setCouponCode] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+
+  const handleApplyCoupon = async (e) => {
+    e.preventDefault();
+    if (!couponCode.trim()) return;
+    setCouponError("");
+    setCouponLoading(true);
+    const result = await applyCoupon(couponCode.trim());
+    if (result.status === "error") {
+      setCouponError(result.message);
+    } else {
+      setCouponCode("");
+    }
+    setCouponLoading(false);
+  };
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -121,19 +145,50 @@ function Cart() {
               <span className="delivery-badge">مجانا</span>
             </div>
 
+            <div className="row summary-row">
+              <h4>المجموع الجزئي</h4>
+              <span>{getCartTotal().toFixed(2)} ر.س</span>
+            </div>
+
+            <div className="row summary-row">
+              <h4>الضريبة (15%)</h4>
+              <span>{getTax().toFixed(2)} ر.س</span>
+            </div>
+
+            {coupon && (
+              <div className="row summary-row coupon-applied-row">
+                <h4>الخصم ({coupon.code})</h4>
+                <span className="discount-amount">- {getDiscount().toFixed(2)} ر.س</span>
+              </div>
+            )}
+
             <hr />
 
-            <form className="coupon-form">
-              <input type="text" placeholder="كوبون الخصم" />
-              <input type="submit" value="تطبيق" />
-            </form>
+            {coupon ? (
+              <div className="coupon-applied">
+                <span>تم تطبيق الكوبون: {coupon.code}</span>
+                <button type="button" className="remove-coupon-btn" onClick={removeCoupon}>إزالة</button>
+              </div>
+            ) : (
+              <form className="coupon-form" onSubmit={handleApplyCoupon}>
+                <input
+                  type="text"
+                  placeholder="كوبون الخصم"
+                  value={couponCode}
+                  onChange={(e) => { setCouponCode(e.target.value); setCouponError(""); }}
+                />
+                <input type="submit" value={couponLoading ? "..." : "تطبيق"} disabled={couponLoading} />
+              </form>
+            )}
+
+            {couponError && <p className="coupon-error">{couponError}</p>}
 
             <div className="row total-row">
               <div>
-                <h3>المجموع</h3>
-                <p>شامل جميع العناصر في السلة</p>
+                <h3>الإجمالي</h3>
+                <p>شامل الضريبة والخصومات</p>
               </div>
-              <h3>{getCartTotal()} ر.س</h3>
+              <h3>{getFinalTotal().toFixed(2)} ر.س</h3>
             </div>
 
             <Link to={'/payment'}>

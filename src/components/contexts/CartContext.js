@@ -8,6 +8,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [coupon, setCoupon] = useState(null); // { code, discountAmount }
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const { setIsLoading } = useLoading();
@@ -96,13 +97,32 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Total price
+  // Subtotal (before tax/discount)
   const getCartTotal = () => {
     return cartItems.reduce(
       (total, item) => total + Number(item.product.price) * item.quantity,
       0
     );
   };
+
+  // Apply coupon — calls backend to validate and get discount amount
+  const applyCoupon = async (code) => {
+    try {
+      const res = await apiClient.get('/coupons/validate/', { params: { code } });
+      setCoupon({ code, discountAmount: res.data.discount_amount });
+      return { status: 'success', discountAmount: res.data.discount_amount };
+    } catch (error) {
+      return { status: 'error', message: error.response?.data?.detail || 'كوبون غير صالح' };
+    }
+  };
+
+  const removeCoupon = () => setCoupon(null);
+
+  const getTax = () => getCartTotal() * 0.15;
+
+  const getDiscount = () => coupon?.discountAmount || 0;
+
+  const getFinalTotal = () => getCartTotal() + getTax() - getDiscount();
 
   // Total count
   const totalQuantity = () => {
@@ -126,11 +146,17 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        coupon,
         addToCart,
         removeFromCart,
         clearCart,
         updateCartItem,
         getCartTotal,
+        applyCoupon,
+        removeCoupon,
+        getTax,
+        getDiscount,
+        getFinalTotal,
         totalQuantity,
         fetchCart
       }}
